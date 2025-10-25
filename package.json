@@ -1,0 +1,129 @@
+{
+  "name": "port-cleaner",
+  "displayName": "Port Cleaner",
+  "description": "View and manage open ports across Windows, Mac, and Linux",
+  "version": "1.0.0",
+  "publisher": "hassansaadfr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hassansaadfr/vscode-port-cleaner"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "icon": "resources/icon.png",
+  "contributes": {
+    "configuration": {
+      "title": "Port Cleaner",
+      "properties": {
+        "portCleaner.hideSystemProcesses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Hide system ports and processes from the port list (filters by port number and process name)"
+        },
+        "portCleaner.systemPortMax": {
+          "type": "number",
+          "default": 1023,
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "Maximum port number considered as system port (default: 1023 for well-known ports)"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "portCleaner",
+          "title": "Port Cleaner",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "portCleaner": [
+        {
+          "id": "portCleaner.portsView",
+          "name": "Open Ports"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "portCleaner.refresh",
+        "title": "Refresh Ports",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "portCleaner.killProcess",
+        "title": "Kill Process",
+        "icon": "$(close)"
+      },
+      {
+        "command": "portCleaner.toggleSystemProcesses",
+        "title": "Toggle System Ports Filter",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "portCleaner.search",
+        "title": "Search Ports",
+        "icon": "$(search)"
+      },
+      {
+        "command": "portCleaner.clearSearch",
+        "title": "Clear Search",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "portCleaner.search",
+          "when": "view == portCleaner.portsView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "portCleaner.clearSearch",
+          "when": "view == portCleaner.portsView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "portCleaner.toggleSystemProcesses",
+          "when": "view == portCleaner.portsView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "portCleaner.refresh",
+          "when": "view == portCleaner.portsView",
+          "group": "navigation@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "portCleaner.killProcess",
+          "when": "view == portCleaner.portsView && viewItem == portItem",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}
