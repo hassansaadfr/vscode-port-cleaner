@@ -9,6 +9,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # Required for creating releases
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,18 +28,21 @@ jobs:
       - name: Compile TypeScript
         run: npm run compile
 
-      - name: Install vsce
-        run: npm install -g @vscode/vsce
-
-      - name: Package extension
-        run: vsce package
-
       - name: Publish to VS Code Marketplace
-        run: vsce publish -p ${{ secrets.VSCE_PAT }}
+        uses: lannonbr/vsce-action@4.0.0
+        with:
+          args: "publish -p $VSCE_TOKEN"
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
 
       - name: Get version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Package extension for release
+        uses: lannonbr/vsce-action@4.0.0
+        with:
+          args: "package"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1

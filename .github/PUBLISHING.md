@@ -33,7 +33,7 @@ This document explains how to publish the Port Cleaner extension to the VS Code 
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
 4. Add the following secret:
-   - **Name**: `VSCE_PAT`
+   - **Name**: `VSCE_TOKEN`
    - **Value**: Paste your Azure DevOps PAT from step 1
 5. Click **Add secret**
 
@@ -115,7 +115,7 @@ After publishing:
 ### PAT Authentication Failed
 - Verify the PAT has **Marketplace → Manage** scope
 - Ensure the PAT hasn't expired
-- Check the PAT is added as `VSCE_PAT` in GitHub Secrets
+- Check the PAT is added as `VSCE_TOKEN` in GitHub Secrets
 
 ### Publisher Not Found
 - Verify `publisher` field in package.json matches your publisher ID
