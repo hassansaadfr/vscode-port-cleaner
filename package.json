@@ -9,6 +9,27 @@
     "url": "https://github.com/hassansaadfr/vscode-port-cleaner"
   },
   "license": "MIT",
+  "keywords": [
+    "port",
+    "network",
+    "tcp",
+    "udp",
+    "monitoring",
+    "process",
+    "kill",
+    "netstat",
+    "lsof",
+    "ports",
+    "networking",
+    "developer-tools",
+    "system",
+    "process-manager",
+    "cross-platform"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },

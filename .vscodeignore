@@ -1,11 +1,49 @@
+# VS Code specific files
 .vscode/**
 .vscode-test/**
+
+# Source files (only compiled JS should be included)
 src/**
+**/tsconfig.json
+**/*.ts
+**/*.map
+
+# Build and dependency files
+node_modules/**
 .gitignore
 .yarnrc
+
+# Development files
 vsc-extension-quickstart.md
-**/tsconfig.json
 **/.eslintrc.json
-**/*.map
-**/*.ts
-**/node_modules/**
+.eslintrc.json
+
+# Documentation files for development only
+QUICKSTART.md
+
+# Git files
+.git/**
+.gitattributes
+.github/**
+
+# CI/CD files
+.travis.yml
+azure-pipelines.yml
+
+# Build artifacts
+*.vsix
+out/test/**
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Test files
+test/**
+**/*.test.js
+**/*.spec.js
